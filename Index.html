@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I'm Sorry 💌</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: linear-gradient(-45deg, #ffdde1, #ee9ca7, #ffc3a0, #ffafbd);
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .heart {
+    position: absolute;
+    top: -50px;
+    font-size: 20px;
+    opacity: 0.8;
+    animation: fall linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(110vh) rotate(360deg);
+    }
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 30px;
+    padding: 50px 40px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    max-width: 450px;
+    width: 90%;
+    z-index: 10;
+    animation: popIn 0.6s ease;
+  }
+
+  @keyframes popIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: #d6336c;
+    margin-bottom: 15px;
+  }
+
+  p.subtitle {
+    color: #555;
+    margin-bottom: 30px;
+    font-size: 1.05rem;
+    min-height: 24px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+  }
+
+  button {
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.25s ease;
+    outline: none;
+  }
+
+  #yesBtn {
+    background: linear-gradient(135deg, #ff6b8b, #d6336c);
+    color: white;
+    padding: 14px 28px;
+    font-size: 1rem;
+    box-shadow: 0 8px 20px rgba(214, 51, 108, 0.4);
+  }
+
+  #yesBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(214, 51, 108, 0.5);
+  }
+
+  #noBtn {
+    background: #e9ecef;
+    color: #495057;
+    padding: 14px 28px;
+    font-size: 1rem;
+  }
+
+  #noBtn:hover {
+    background: #dee2e6;
+  }
+
+  .please-text {
+    font-size: 0.85rem;
+    color: #d6336c;
+    font-style: italic;
+    min-height: 20px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .final-note {
+    animation: popIn 0.7s ease;
+  }
+
+  .final-note h1 {
+    font-size: 1.8rem;
+  }
+
+  .note-text {
+    text-align: left;
+    color: #444;
+    line-height: 1.7;
+    font-size: 1rem;
+    margin: 20px 0;
+    white-space: pre-line;
+  }
+
+  .signature {
+    text-align: right;
+    font-style: italic;
+    color: #d6336c;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  .big-heart {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    animation: beat 1.2s ease-in-out infinite;
+  }
+
+  @keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+</style>
+</head>
+<body>
+
+<div id="card" class="card">
+  <div class="big-heart">💔</div>
+  <h1 id="mainTitle">I'm Sorry 🥺</h1>
+  <p class="subtitle" id="subtitle">I know I messed up with that joke. Can you forgive me?</p>
+  <div class="btn-row">
+    <button id="yesBtn" onclick="handleYes()">Forgive Me 💕</button>
+    <button id="noBtn" onclick="handleNo()">Not Yet</button>
+  </div>
+  <p class="please-text" id="pleaseText"></p>
+</div>
+
+<div id="finalNote" class="card final-note hidden">
+  <div class="big-heart">💖</div>
+  <h1>Thank You 🥹</h1>
+  <div class="note-text">
+Hey you,
+
+I'm truly sorry for that joke. I didn't mean to hurt you, I just wasn't thinking about how it would land, and that's on me. Seeing you upset made me realize how much I care about you and how much your feelings matter to me.
+
+I promise to be more thoughtful next time. You mean the world to me, and I never want to be the reason you're sad. Thank you for giving me another chance 💕
+
+I owe you a hug, your favorite snack, and probably a lot more apologies... but mostly, I owe you my full attention from now on. 🌸
+  </div>
+  <div class="signature">— Yours, always 🥰</div>
+</div>
+
+<script>
+  const messages = [
+    { title: "I'm Sorry 🥺", subtitle: "I know I messed up with that joke. Can you forgive me?", please: "" },
+    { title: "Sorry na 😢", subtitle: "I really didn't mean to hurt you...", please: "please?" },
+    { title: "I beg you 🙏", subtitle: "I'll never joke like that again, I promise.", please: "please please?" },
+    { title: "Pleaseee 🥺🥺", subtitle: "My heart hurts seeing you upset with me.", please: "pretty please with a cherry on top? 🍒" },
+    { title: "I'm really really sorry 😭", subtitle: "I miss talking to you already...", please: "one more chance? 🥹" },
+    { title: "Okay last try 🥹💔", subtitle: "I promise to make it up to you, just forgive me?", please: "pleaseeeee 🙏🥺💗" }
+  ];
+
+  let noClicks = 0;
+  let yesScale = 1;
+  let noScale = 1;
+
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+  const mainTitle = document.getElementById('mainTitle');
+  const subtitle = document.getElementById('subtitle');
+  const pleaseText = document.getElementById('pleaseText');
+
+  function handleNo() {
+    noClicks++;
+
+    // shrink no button, grow yes button
+    noScale = Math.max(0.4, noScale - 0.12);
+    yesScale = Math.min(2.2, yesScale + 0.22);
+
+    noBtn.style.transform = `scale(${noScale})`;
+    noBtn.style.padding = `${14 * noScale}px ${28 * noScale}px`;
+    noBtn.style.fontSize = `${1 * noScale}rem`;
+
+    yesBtn.style.transform = `scale(${yesScale})`;
+    yesBtn.style.fontSize = `${1 * Math.min(yesScale, 1.6)}rem`;
+
+    const msgIndex = Math.min(noClicks, messages.length - 1);
+    const msg = messages[msgIndex];
+
+    mainTitle.textContent = msg.title;
+    subtitle.textContent = msg.subtitle;
+    pleaseText.textContent = msg.please;
+
+    // once the no button gets tiny enough, basically disable it
+    if (noScale <= 0.42) {
+      noBtn.style.pointerEvents = "none";
+      noBtn.style.opacity = "0.5";
+    }
+  }
+
+  function handleYes() {
+    document.getElementById('card').classList.add('hidden');
+    document.getElementById('finalNote').classList.remove('hidden');
+    spawnHearts(25);
+  }
+
+  function spawnHearts(count) {
+    const emojis = ['💕','💖','💗','💓','💞','🌸'];
+    for (let i = 0; i < count; i++) {
+      setTimeout(() => {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = (16 + Math.random() * 20) + 'px';
+        heart.style.animationDuration = (3 + Math.random() * 4) + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 8000);
+      }, i * 150);
+    }
+  }
+
+  // gentle ambient hearts falling from the start
+  setInterval(() => spawnHearts(1), 1200);
+</script>
+
+</body>
+</html>
